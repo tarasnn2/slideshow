@@ -1,12 +1,11 @@
 #!/bin/bash
 
-while getopts p: flag
-do
-    case "${flag}" in
-	p) prefix=${OPTARG};;
-    esac
+while getopts p: flag; do
+  case "${flag}" in
+  p) prefix=${OPTARG} ;;
+  esac
 done
 
-basePath=$(dirname -- "$0";)
+basePath=$(dirname -- "$0")
 
 touch ${basePath}/${prefix}.barrier
