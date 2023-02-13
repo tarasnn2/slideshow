@@ -40,8 +40,8 @@ while read -r line; do
   while read -r file; do
     fileArr=(${file//// })
     convert -pointsize 200 -fill black -draw "text 10,250 \"${fileArr[3]} ${fileArr[4]}\"" -channel RGBA -fill darkred -stroke magenta "$file" "$TMPDIR$file"
-  done < <(find "${line}" -type f)
-  #`imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}"`
+  done < <(find "${line}" -type f -name "*.jpg" -o -iname "*.JPG")
   $(DISPLAY=:1 imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
+  #$(imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
   rm -rdf "${TMPDIR}${line}"
 done < <(tail -n $LAST_LINE $FILE)
