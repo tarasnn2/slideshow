@@ -39,7 +39,7 @@ while read -r line; do
   mkdir -p "${TMPDIR}${line}"
   while read -r file; do
     fileArr=(${file//// })
-    convert -pointsize 200 -fill black -draw "text 10,250 \"${fileArr[3]} ${fileArr[4]}\"" -channel RGBA -fill darkred -stroke magenta "$file" "$TMPDIR$file"
+    convert "$file" -size 1300x100! -background none caption:"${fileArr[3]} ${fileArr[4]}" -geometry +10+10 -composite "$TMPDIR$file"
   done < <(find "${line}" -type f -name "*.jpg" -o -iname "*.JPG")
   $(DISPLAY=:1 imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
   #$(imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
