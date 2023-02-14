@@ -39,7 +39,7 @@ while read -r line; do
   mkdir -p "${TMPDIR}${line}"
   while read -r file; do
     IFS='/' read -r -a fileArr <<<"$file"
-    convert "$file" -size 1500x250! -background none caption:"${fileArr[4]} ${fileArr[5]}" -geometry +10+10 -composite "$TMPDIR$file"
+    convert "$file" -size 2000x350! -background none caption:"${fileArr[4]} ${fileArr[5]}" -geometry +10+10 -composite "$TMPDIR$file"
   done < <(find "${line}" -type f -name "*.jpg" -o -iname "*.JPG")
   $(DISPLAY=:1 imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
   #$(imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
