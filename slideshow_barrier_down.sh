@@ -8,4 +8,4 @@ done
 
 basePath=$(dirname -- "$0")
 
-rm ${basePath}/${prefix}.barrier
+rm "${basePath}/${prefix}.barrier"

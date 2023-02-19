@@ -1,3 +1,4 @@
 *.lst
 1.sh
+*.barrier
 Pictures/*

@@ -12,7 +12,7 @@ basePath=$(dirname -- "$0")
 slider_pid=$(pgrep slideshow_start)
 
 if [ ! -z "$slider_pid" ]; then
-  echo "slider alredy running, exit"
+  echo "slider already running, exit"
   exit 0
 fi
 

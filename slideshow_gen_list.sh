@@ -9,4 +9,4 @@ done
 
 basePath=$(dirname -- "$0")
 
-find $sourcePath -type d | grep -vE $(cat ${basePath}/${prefix}_exclude.lst) | sort >${basePath}/${prefix}_image.lst
+find ${sourcePath} -type d | grep -vE $(cat "${basePath}/${prefix}_exclude.lst") | sort >"${basePath}/${prefix}_image.lst"
