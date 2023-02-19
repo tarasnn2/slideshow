@@ -37,11 +37,20 @@ while read -r line; do
 
   rm -rdf "${TMPDIR}${line}"
   mkdir -p "${TMPDIR}${line}"
+  fileArr=()
   while read -r file; do
     IFS='/' read -r -a fileArr <<<"$file"
-    convert "$file" -size 2000x350! -background none caption:"${fileArr[4]} ${fileArr[5]}" -geometry +10+10 -composite "$TMPDIR$file"
+    if [ ${#fileArr[@]} -eq 0 ]; then
+      echo "Empty array"
+    else
+      convert "$file" -size 2000x350! -background none caption:"${fileArr[4]} ${fileArr[5]}" -geometry +10+10 -composite "$TMPDIR$file"
+    fi
   done < <(find "${line}" -maxdepth 1 -type f -name "*.jpg" -o -iname "*.JPG")
-  $(DISPLAY=:1 imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
-  #$(imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
+  if [ ${#fileArr[@]} -eq 0 ]; then
+    echo "Empty array"
+  else
+    $(DISPLAY=:1 imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
+    #$(imv-x11 -r -f -t$timeShow -x -s full "${TMPDIR}${line}")
+  fi
   rm -rdf "${TMPDIR}${line}"
 done < <(tail -n "${LAST_LINE}" "${FILES}")
