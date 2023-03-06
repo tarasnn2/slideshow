@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TMPDIR=/tmp
+TMPDIR=/tmp/special/slideshow
 
 while getopts p:t: flag; do
   case "${flag}" in
@@ -43,7 +43,7 @@ while read -r line; do
     if [ ${#fileArr[@]} -eq 0 ]; then
       echo "Empty array"
     else
-      convert "$file" -size 2000x250! -background none caption:"${fileArr[5]} ${fileArr[6]}" -geometry +10+10 -composite "$TMPDIR$file"
+      convert "$file" -size 2000x300! -background none caption:"${fileArr[5]} ${fileArr[6]}" -geometry +10+10 -composite "$TMPDIR$file"
     fi
   done < <(find "${line}" -maxdepth 1 -type f -name "*.jpg" -o -iname "*.JPG")
   if [ ${#fileArr[@]} -eq 0 ]; then
